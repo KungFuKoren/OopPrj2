@@ -2,16 +2,21 @@ from typing import List
 from User import User
 
 class SocialNetwork():
-    
+    _instance = None
+
+    def __new__(cls, name):
+        if cls._instance is None:
+            cls._instance = super(SocialNetwork, cls).__new__(cls)
 
     def __init__(self , name):
-        self.userList: List[User] = []
-        self.userNames: List[str] = []
-        self.activeUsers: List[str] = []
-        if type(name) == str:
-            self.name = name
-        else:
-            raise Exception("invalid name")
+        if not hasattr(self, 'initialized'):    
+            self.userList: List[User] = []
+            self.userNames: List[str] = []
+            self.activeUsers: List[str] = []
+            if type(name) == str:
+                self.name = name
+            else:
+                raise Exception("invalid name")
 
     def getName(self):
         return self.name        
