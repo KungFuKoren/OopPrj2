@@ -7,7 +7,6 @@ class SocialNetwork():
     def __init__(self , name):
         self.userList: List[User] = []
         self.userNames: List[str] = []
-      #  self.userPasswords: List[str] = []
         self.activeUsers: List[str] = []
         if type(name) == str:
             self.name = name
