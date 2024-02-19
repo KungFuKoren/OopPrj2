@@ -9,7 +9,8 @@ class SocialNetwork():
             cls._instance = super(SocialNetwork, cls).__new__(cls)
 
     def __init__(self , name):
-        if not hasattr(self, 'initialized'):    
+       if not hasattr(self, 'initialized'):  
+            print("INITIALIZED")  
             self.userList: List[User] = []
             self.userNames: List[str] = []
             self.activeUsers: List[str] = []
@@ -17,6 +18,7 @@ class SocialNetwork():
                 self.name = name
             else:
                 raise Exception("invalid name")
+       else: raise Exception("Cant create another network")    
 
     def getName(self):
         return self.name        
