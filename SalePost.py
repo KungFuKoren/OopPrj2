@@ -1,0 +1,2 @@
+class SalePost(Post):
+    
