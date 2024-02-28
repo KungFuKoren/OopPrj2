@@ -1,14 +1,15 @@
+from abc import ABC #, abstractmethod  # if needed
 from typing import List
-from User import User
 
 
-class Post():
+class Post(ABC):
     # Use Factory design for choosing type of post
     def __init__(self ,user, type , content):
-        if not isinstance(user , User) or not isinstance(type , str) 
-        self.text = text
+        
+        self.type = type
+        self.content = content
         self.user = user
-        self.likes: List[str] = []
+        self.likes = {}
         self.comments: List[str] = []
 
 def getUser(self):
@@ -18,11 +19,16 @@ def getLikes(self):
     return len(self.likes)
 
 def addLike(self , user):
-    if isinstance(user , User) and user.getName not in self.likes:
-        self.likes.append(user.getName)
+    from User import User
+    
+    if isinstance(user , User) and user.getName() not in self.likes:
+        self.likes.add(user.getName)
 # sends notification
         
 def addComment(self , user , text ):
-    self.comments.append(text)
+    self.comments.append({
+        "user": user,
+        "text" : text
+    })
     #send notification
 

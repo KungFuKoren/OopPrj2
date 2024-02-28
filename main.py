@@ -2,9 +2,10 @@ from SocialNetwork import SocialNetwork
 
 
 def main():
+
     # Creating the network
     network = SocialNetwork("Twitter")
-    print()
+    print(network.getName())
 
     # # Creating users
     u1 = network.sign_up("Alice", "pass1")
@@ -12,7 +13,6 @@ def main():
     
     u1.follow(u2)
     u1.unfollow(u2)
-    u2.unfollow(u1)
 
     # u3 = network.sign_up("Charlie", "pass3")
     # u4 = network.sign_up("David", "pass4")
@@ -32,14 +32,17 @@ def main():
     # print()
 
     # # Creating text post
-    # p1 = u1.publish_post("Text", "In 1492, Christopher Columbus set sail,\n"
-    #                              "hoping to find a westward route to Asia, but instead,\n"
-    #                              "he discovered the Americas, changing the course of history forever.")
+    p1 = u1.publish_post("Text", "In 1492, Christopher Columbus set sail,\n"
+                                 "hoping to find a westward route to Asia, but instead,\n"
+                                 "he discovered the Americas, changing the course of history forever.")
+    p1.print()
     # # Creating image post
-    # p2 = u4.publish_post("Image", 'image1.jpg')
+    p2 = u4.publish_post("Image", 'image1.jpg')
+    p2.print()
 
     # # Creating sale post
-    # p3 = u3.publish_post("Sale", "Toyota prius 2012", 42000, "Haifa")
+    p3 = u3.publish_post("Sale", "Toyota prius 2012", 42000, "Haifa")
+    p3.print()
 
     # # Creating likes and comments
     # p2.like(u4)
