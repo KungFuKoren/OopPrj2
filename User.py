@@ -20,32 +20,28 @@ class User():
         elif  user.userName in self.friends_list:
             raise Exception("Already follows")
         else: 
+            print("followed")
             self.friends_list.append(user.userName)
             user.followsMe.append(self)
 
 
-    # def unfollow(self , user):
-    #     if not isinstance(user , User):
-    #         raise Exception("Invalid input")
-    #     elif user.getName() not in self.friends_list:
-    #         raise Exception("You do not follow this user")
-    #     else: 
-    #         for index in user.followsMe:
-    #             if user.followsMe[index].getName == self.getName:
-    #                 user.followsMe.remove(index)
-    #         self.friends_list.remove(user.getName)
-         
+    def unfollow(self , user):
+        if not isinstance(user , User):
+            raise Exception("Invalid input")
+        elif user.userName not in self.friends_list:
+            raise Exception("You do not follow this user")
+        else:
+            print("removed")
+            self.friends_list.remove(user.userName)
+            user.followsMe.remove(self) 
 
-    # def getName(self):
-    #     return self.userName
-
-
-    # def publish_post(self , type , text , price , location ):
-    #     if isinstance(type , str):
-    #         x = 1
-    #     else: raise Exception("not a valid input")
-    #     #publishes post , sends notification for followed users
-    #     #         
+    
+    def publish_post(self , type , text , price , location ):
+        if isinstance(type , str):
+            x = 1
+        else: raise Exception("not a valid input")
+        #publishes post , sends notification for followed users
+        #         
 
     
     # def like(self , post):

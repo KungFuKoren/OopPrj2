@@ -9,7 +9,10 @@ def main():
     # # Creating users
     u1 = network.sign_up("Alice", "pass1")
     u2 = network.sign_up("Bob", "pass2")
-
+    
+    u1.follow(u2)
+    u1.unfollow(u2)
+    u2.unfollow(u1)
 
     # u3 = network.sign_up("Charlie", "pass3")
     # u4 = network.sign_up("David", "pass4")

@@ -4,7 +4,8 @@ from User import User
 
 class Post():
     # Use Factory design for choosing type of post
-    def __init__(self ,user , text):
+    def __init__(self ,user, type , content):
+        if not isinstance(user , User) or not isinstance(type , str) 
         self.text = text
         self.user = user
         self.likes: List[str] = []
