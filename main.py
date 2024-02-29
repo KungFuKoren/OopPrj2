@@ -102,6 +102,17 @@ def main():
 
     # # Network printing
     # print(network, end='')
+    print("u1 notif list:")
+    print(u1.notif_list)
+    print("u2 notif list:")
+    print(u2.notif_list)
+    print("u3 notif list:")
+    print(u3.notif_list)
+    print("u4 notif list:")
+    print(u4.notif_list)
+    print("u5 notif list:")
+    print(u5.notif_list)
+    
 
 
 if __name__ == '__main__':

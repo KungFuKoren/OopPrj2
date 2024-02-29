@@ -41,7 +41,7 @@ class SocialNetwork():
 
 
     def log_in(self , userName , passWord):
-        if type(userName) == str and userName in self.userNames and userName not in self.activeUsers:
+        if type(userName) == str and userName in self.userNames and not self.userList[userName].logged:
             if self.userList[userName].passWord == passWord:
                 self.userList[userName].logged = True
         else: raise Exception("Unable to log in")        

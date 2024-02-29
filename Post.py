@@ -20,7 +20,7 @@ class Post(ABC):
 
     def comment(self, user, text):
         from User import User
-        if not isinstance(user, User) and user.getName() not in self.likes:
+        if not isinstance(user, User) and user.getName() not in self.likes and not user.logged:
             raise Exception("Unable to add comment")
         self.comments.append({
             "user": user,
@@ -30,7 +30,7 @@ class Post(ABC):
 
     def like(self, user):
         from User import User
-        if isinstance(user, User) and user.getName() not in self.likes:
+        if isinstance(user, User) and user.getName() not in self.likes and user.logged:
             self.likes.add(user)
             # print("Liked")
         else:

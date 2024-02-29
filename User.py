@@ -4,6 +4,7 @@ class User():
     #use observer design for notifications maybe ?
     
     def __init__(self , userName , passWord):
+        from FollowersObserver import FollowersObserver
         from Post import Post
         from PostFactory import PostFactory
         self.logged = True
@@ -11,9 +12,9 @@ class User():
         self.passWord = passWord
         self.post_list: List[Post] = []
         self.friends_list: List[str] = []
-        self.notif_list = []
-        self.followsMe: List[User] = []
+        self.notif_list: List[str] = []
         self.post_factory = PostFactory()
+        self.followers_observer = FollowersObserver(self)
 
     def __str__(self):
         return f'User name: {self.getName()}, Number of posts: {self.howManyPosts()} Number of followers: {self.numOfFollowers()} '
@@ -22,7 +23,7 @@ class User():
         return len(self.post_list)
 
     def numOfFollowers(self):
-        return len(self.followsMe)    
+        return self.followers_observer.followers_amount()    
 
     def getName(self):
         return self.userName
@@ -35,7 +36,7 @@ class User():
         else: 
             print(f"{user.userName} started following {self.userName}")
             self.friends_list.append(user.userName)
-            user.followsMe.append(self)
+            user.followers_observer.subscribe(self)
 
 
     def unfollow(self , user):
@@ -44,9 +45,8 @@ class User():
         elif user.userName not in self.friends_list:
             raise Exception("You do not follow this user")
         else:
-            print("removed")
             self.friends_list.remove(user.userName)
-            user.followsMe.remove(self) 
+            user.followers_observer.unsubscribe(self)
 
     #implement factory design pattern
     def publish_post(self , type , content, price = None, location = None):
@@ -56,7 +56,10 @@ class User():
             raise Exception("not a valid input")
         post = self.post_factory.createPost(self, type , content, price, location)
         self.post_list.append(post)
+        self.followers_observer.notifyToFollowers(post)
         return post
         
-
-   
+    def add_notifaction(self, notification):
+        if not isinstance(notification, str):
+            raise Exception("Must send a string to notifications")
+        self.notif_list.append(notification)
