@@ -3,12 +3,14 @@ from typing import List, Dict, Union
 
 class Post(ABC):
     def __init__(self, user, post_type, content):
+        from PostObserver import PostObserver
         from User import User
         self.post_type = post_type
         self.content = content
         self.user = user
         self.likes = set()
         self.comments: List[Dict[Union[User, str], str]] = []
+        self.post_observer = PostObserver(self)
         
 
 
@@ -26,12 +28,16 @@ class Post(ABC):
             "user": user,
             "text": text
         })
+        self.post_observer.commented(user)
         # send notification
 
     def like(self, user):
         from User import User
         if isinstance(user, User) and user.getName() not in self.likes and user.logged:
             self.likes.add(user)
+            self.post_observer.liked(user)
+
+
             # print("Liked")
         else:
             raise Exception("Unable to like")
