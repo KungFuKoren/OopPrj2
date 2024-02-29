@@ -1,34 +1,37 @@
-from abc import ABC #, abstractmethod  # if needed
-from typing import List
-
+from abc import ABC
+from typing import List, Dict, Union
 
 class Post(ABC):
-    # Use Factory design for choosing type of post
-    def __init__(self ,user, type , content):
-        
-        self.type = type
+    def __init__(self, user, post_type, content):
+        from User import User
+        self.post_type = post_type
         self.content = content
         self.user = user
-        self.likes = {}
-        self.comments: List[str] = []
-
-def getUser(self):
-    return self.user
-
-def getLikes(self):
-    return len(self.likes)
-
-def addLike(self , user):
-    from User import User
-    
-    if isinstance(user , User) and user.getName() not in self.likes:
-        self.likes.add(user.getName)
-# sends notification
+        self.likes = set()
+        self.comments: List[Dict[Union[User, str], str]] = []
         
-def addComment(self , user , text ):
-    self.comments.append({
-        "user": user,
-        "text" : text
-    })
-    #send notification
 
+
+    def getUser(self):
+        return self.user
+
+    def getLikes(self):
+        return len(self.likes)
+
+    def comment(self, user, text):
+        from User import User
+        if not isinstance(user, User) and user.getName() not in self.likes:
+            raise Exception("Unable to add comment")
+        self.comments.append({
+            "user": user,
+            "text": text
+        })
+        # send notification
+
+    def like(self, user):
+        from User import User
+        if isinstance(user, User) and user.getName() not in self.likes:
+            self.likes.add(user)
+            # print("Liked")
+        else:
+            raise Exception("Unable to like")

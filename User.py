@@ -6,7 +6,7 @@ class User():
     def __init__(self , userName , passWord):
         from Post import Post
         from PostFactory import PostFactory
-        logged = True
+        self.logged = True
         self.userName = userName
         self.passWord = passWord
         self.post_list: List[Post] = []
@@ -15,17 +15,25 @@ class User():
         self.followsMe: List[User] = []
         self.post_factory = PostFactory()
 
+    def __str__(self):
+        return f'User name: {self.getName()}, Number of posts: {self.howManyPosts()} Number of followers: {self.numOfFollowers()} '
+
+    def howManyPosts(self):
+        return len(self.post_list)
+
+    def numOfFollowers(self):
+        return len(self.followsMe)    
+
     def getName(self):
         return self.userName
-
-
+    
     def follow(self , user):        
         if not isinstance(user , User):
             raise Exception("Invalid input")
         elif  user.userName in self.friends_list:
             raise Exception("Already follows")
         else: 
-            print("followed")
+            print(f"{user.userName} started following {self.userName}")
             self.friends_list.append(user.userName)
             user.followsMe.append(self)
 
@@ -42,42 +50,13 @@ class User():
 
     #implement factory design pattern
     def publish_post(self , type , content, price = None, location = None):
-        if not isinstance(type , str) or type not in {"Text", "Image", "Sale"}:
+        if not self.logged:
+            raise Exception("user must be logged in")
+        if not isinstance(type , str) or content == "" or type not in {"Text", "Image", "Sale"}:
             raise Exception("not a valid input")
         post = self.post_factory.createPost(self, type , content, price, location)
         self.post_list.append(post)
         return post
         
 
-    
-    # def like(self , post):
-    #      from Post import Post  
-    #     if isinstance(post , Post):
-    #         post.addLike(self)
-    #     else: raise Exception("Invalid input")    
-
-
-    # def comment(self , post , text):
-    #     if isinstance(post , Post) and type(text) == str:
-    #         post.addComment(self , text)
-    #     else: raise Exception("Invalid input")
-
-
-    # def notifIfUpload(self , user):
-    #     #gets notification if followed posted
-    #     random = 1
-
-
-    # def notIfCom(self , user):
-    #     #gets notification if someone liked or commented ur post (do not include self likes)        
-    #     random = 1
-
-
-    # def getUserInfo(self):
-    #     #user indo
-    #     random = 11     
-
-
-    # def getAllNotif(self):
-    #     #gets all notifications from oldest to new
-    #     random = 1
+   

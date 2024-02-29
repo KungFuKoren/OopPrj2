@@ -5,102 +5,100 @@ def main():
 
     # Creating the network
     network = SocialNetwork("Twitter")
-    print(network.getName())
+    print("\n")
 
     # # Creating users
     u1 = network.sign_up("Alice", "pass1")
     u2 = network.sign_up("Bob", "pass2")
-    
+    u3 = network.sign_up("Charlie", "pass3")
+    u4 = network.sign_up("David", "pass4")
+    u5 = network.sign_up("Eve", "pass5")
+
+    # Creating followers
     u1.follow(u2)
-    u1.unfollow(u2)
-
-    # u3 = network.sign_up("Charlie", "pass3")
-    # u4 = network.sign_up("David", "pass4")
-    # u5 = network.sign_up("Eve", "pass5")
-
-    # # Creating followers
-    # u1.follow(u2)
-    # u1.follow(u5)
-    # u2.follow(u5)
-    # u2.follow(u1)
-    # u3.follow(u1)
-    # u3.follow(u2)
-    # u4.follow(u3)
-    # u4.follow(u1)
-    # u5.follow(u2)
-    # u5.follow(u4)
-    # print()
+    u1.follow(u5)
+    u2.follow(u5)
+    u2.follow(u1)
+    u3.follow(u1)
+    u3.follow(u2)
+    u4.follow(u3)
+    u4.follow(u1)
+    u5.follow(u2)
+    u5.follow(u4)
+    print("\n")
 
     # # Creating text post
     p1 = u1.publish_post("Text", "In 1492, Christopher Columbus set sail,\n"
                                  "hoping to find a westward route to Asia, but instead,\n"
                                  "he discovered the Americas, changing the course of history forever.")
-    p1.print()
+    print("\n")
+
     # # Creating image post
     p2 = u4.publish_post("Image", 'image1.jpg')
-    p2.print()
+    print("\n")
 
     # # Creating sale post
     p3 = u3.publish_post("Sale", "Toyota prius 2012", 42000, "Haifa")
-    p3.print()
+    print("\n")
 
     # # Creating likes and comments
-    # p2.like(u4)
-    # p1.like(u4)
-    # p1.like(u2)
-    # p1.comment(u3, "Columbus's bold journey!")
-    # p2.comment(u1, "So beautiful!")
-    # p2.like(u1)
-    # p2.like(u2)
-    # p2.like(u5)
-    # p1.comment(u5, "A pivotal moment")
-    # p3.comment(u2, "Exorbitant price")
-    # print()
+    p2.like(u4)
+    p1.like(u4)
+    p1.like(u2)
+    p1.comment(u3, "Columbus's bold journey!")
+    p2.comment(u1, "So beautiful!")
+    p2.like(u1)
+    p2.like(u2)
+    p2.like(u5)
+    p1.comment(u5, "A pivotal moment")
+    p3.comment(u2, "Exorbitant price")
+    print("\n")
 
-    # # Price reduction of the product for sale
-    # p3.discount(10, "pass3")
-    # print()
+    # # Price reduction of the producrrt for sale
+    p3.discount(10, "pass3")
+    print("\n")
 
     # # more likes and comments
-    # p3.like(u2)
-    # p3.comment(u2, "Can you give me your phone number?")
-    # p3.comment(u4, "+97255576433")
-    # print()
+    p3.like(u2)
+    p3.comment(u2, "Can you give me your phone number?")
+    p3.comment(u4, "+97255576433")
+    print("\n")
 
     # # Defining the product as sold
-    # p3.sold("pass3")
-    # print()
+    p3.sold("pass3")
 
-    # print(p3)
+    print("\n")
+
+    print(p3)
 
     # # Displaying the image of the post
     # p2.display()
-    # print()
+    print("\n")
 
     # p2.comment(u5, "Amazing picture!")
-    # print()
+    print("\n")
 
     # # Using unfollow
-    # u2.unfollow(u1)
-    # u3.unfollow(u2)
-    # print()
+    u2.unfollow(u1)
+    u3.unfollow(u2)
+    print("\n")
 
-    # # Using log_in & log_out
-    # network.log_out("Charlie")
-    # network.log_in("Charlie", "pass3")
-    # print()
+    # # Using log_in & log_outc
+    network.log_out("Charlie")
+    network.log_in("Charlie", "pass3")
+    print("\n")
 
     # # User printing
-    # print(u1)
-    # print()
+    print(u1)
+    print("\n")
 
     # # Post printing
-    # print(p1)
-    # print(p2)
+    print(p1)
+    print(p2)
 
     # # Printing all notifications received by a certain user
     # u4.print_notifications()
-    # print()
+    print("\n")
 
     # # Network printing
     # print(network, end='')

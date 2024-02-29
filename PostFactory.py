@@ -16,5 +16,6 @@ class PostFactory():
             post = SalePost(user, type, content, price, location)
         else:
             return None
-
+        
+        print(post)
         return post

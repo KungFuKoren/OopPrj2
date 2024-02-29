@@ -13,11 +13,12 @@ class SocialNetwork():
     def __init__(self , name):
         if not hasattr(self, 'initialized'):
             if type(name) == str:  
-                self.userList: List[User] = []
+                self.userList = {}
                 self.userNames: List[str] = []
-                self.activeUsers: List[str] = []
+                # self.activeUsers: List[str] = []
                 self.name = name
                 self.initialized = True
+                print(f"The social network {self.name} was created!")
             else:
                 raise Exception("invalid name")
         else: raise Exception("Cant create another network")    
@@ -33,29 +34,20 @@ class SocialNetwork():
                 raise Exception("User already exists")
             else:
                 _User = User(userName , userPass)
-                self.userList.append(_User)
+                self.userList[_User.userName] = _User
                 self.userNames.append(userName)
-                self.activeUsers.append(userName)
                 return _User
         else: raise Exception("Invaid type of input") 
 
 
     def log_in(self , userName , passWord):
         if type(userName) == str and userName in self.userNames and userName not in self.activeUsers:
-            index = self.userNames.index(userName)
-            if self.userList[index].passWord == passWord:
-                for i in self.userList:
-                    if self.userList[i].name == userName:
-                        self.userList[i].logged = True
-                self.activeUsers.append(userName)
+            if self.userList[userName].passWord == passWord:
+                self.userList[userName].logged = True
         else: raise Exception("Unable to log in")        
 
     def log_out(self , userName):
-        if userName in self.activeUsers:
-            for i in self.userList:
-                if self.userList[i].name == userName:
-                    self.userList[i].logged = False
-
-            self.activeUsers.remove(userName)
-
-        else: raise Exception("User already logged out or User do not exist")    
+        if not self.userList[userName].logged:
+            raise Exception("User already logged out or User do not exist")
+        
+        self.userList[userName].logged = False
