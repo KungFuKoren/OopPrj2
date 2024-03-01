@@ -2,12 +2,11 @@ from SocialNetwork import SocialNetwork
 
 
 def main():
-
     # Creating the network
     network = SocialNetwork("Twitter")
-    print("\n")
+    print()
 
-    # # Creating users
+    # Creating users
     u1 = network.sign_up("Alice", "pass1")
     u2 = network.sign_up("Bob", "pass2")
     u3 = network.sign_up("Charlie", "pass3")
@@ -25,23 +24,19 @@ def main():
     u4.follow(u1)
     u5.follow(u2)
     u5.follow(u4)
-    print("\n")
+    print()
 
-    # # Creating text post
+    # Creating text post
     p1 = u1.publish_post("Text", "In 1492, Christopher Columbus set sail,\n"
                                  "hoping to find a westward route to Asia, but instead,\n"
                                  "he discovered the Americas, changing the course of history forever.")
-    print("\n")
-
-    # # Creating image post
+    # Creating image post
     p2 = u4.publish_post("Image", 'image1.jpg')
-    print("\n")
 
-    # # Creating sale post
+    # Creating sale post
     p3 = u3.publish_post("Sale", "Toyota prius 2012", 42000, "Haifa")
-    print("\n")
 
-    # # Creating likes and comments
+    # Creating likes and comments
     p2.like(u4)
     p1.like(u4)
     p1.like(u2)
@@ -52,66 +47,55 @@ def main():
     p2.like(u5)
     p1.comment(u5, "A pivotal moment")
     p3.comment(u2, "Exorbitant price")
-    print("\n")
+    print()
 
-    # # Price reduction of the producrrt for sale
+    # Price reduction of the product for sale
     p3.discount(10, "pass3")
-    print("\n")
+    print()
 
-    # # more likes and comments
+    # more likes and comments
     p3.like(u2)
     p3.comment(u2, "Can you give me your phone number?")
     p3.comment(u4, "+97255576433")
-    print("\n")
+    print()
 
-    # # Defining the product as sold
+    # Defining the product as sold
     p3.sold("pass3")
-
-    print("\n")
+    print()
 
     print(p3)
 
-    # # Displaying the image of the post
+    # Displaying the image of the post
     p2.display()
-    print("\n")
+    print()
 
-    # p2.comment(u5, "Amazing picture!")
-    print("\n")
+    p2.comment(u5, "Amazing picture!")
+    print()
 
-    # # Using unfollow
+    # Using unfollow
     u2.unfollow(u1)
     u3.unfollow(u2)
-    print("\n")
+    print()
 
-    # # Using log_in & log_outc
+    # Using log_in & log_out
     network.log_out("Charlie")
     network.log_in("Charlie", "pass3")
-    print("\n")
+    print()
 
-    # # User printing
+    # User printing
     print(u1)
-    print("\n")
+    print()
 
-    # # Post printing
+    # Post printing
     print(p1)
     print(p2)
 
-    # # Printing all notifications received by a certain user
-    # u4.print_notifications()
-    print("\n")
+    # Printing all notifications received by a certain user
+    u4.print_notifications()
+    print()
 
-    # # Network printing
-    # print(network, end='')
-    print("u1 notif list:")
-    print(u1.notif_list)
-    print("u2 notif list:")
-    print(u2.notif_list)
-    print("u3 notif list:")
-    print(u3.notif_list)
-    print("u4 notif list:")
-    print(u4.notif_list)
-    print("u5 notif list:")
-    print(u5.notif_list)
+    # Network printing
+    print(network, end='')
 
 
 if __name__ == '__main__':

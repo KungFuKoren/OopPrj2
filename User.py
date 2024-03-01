@@ -64,3 +64,8 @@ class User():
         if not isinstance(notification, str):
             raise Exception("Must send a string to notifications")
         self.notif_list.append(notification)
+
+    def print_notifications(self):
+        print(f"{self.userName} notifications:")
+        for notification in self.notif_list:
+            print(f"{notification}")

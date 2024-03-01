@@ -25,6 +25,12 @@ class SocialNetwork():
         else:
             raise Exception("Cant create another network")
 
+    def __str__(self):
+        ans = f"{self.name} social network:"
+        for user in self.userList:
+            ans += user.__str__()
+        return ans
+
     def getName(self):
         return self.name
 

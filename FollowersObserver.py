@@ -26,7 +26,7 @@ class FollowersObserver():
         if not isinstance(post, Post):
             raise Exception("Post to notify must be type of Post")
         for user in self.subscribers:
-            user.add_notification(post.__str__())
+            user.add_notification(f"{self.user.userName} has a new post")
 
     def is_a_follower(self, user):
         from User import User
