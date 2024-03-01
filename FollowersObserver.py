@@ -1,5 +1,6 @@
 from Post import Post
 
+
 class FollowersObserver():
     def __init__(self, user):
         self.user = user
@@ -9,7 +10,7 @@ class FollowersObserver():
         from User import User
         if not isinstance(user, User):
             raise Exception("Must send user of type User")
-        if(user in self.subscribers):
+        if (user in self.subscribers):
             return
         self.subscribers.add(user)
 
@@ -25,13 +26,13 @@ class FollowersObserver():
         if not isinstance(post, Post):
             raise Exception("Post to notify must be type of Post")
         for user in self.subscribers:
-            user.add_notifaction(post.__str__())
+            user.add_notification(post.__str__())
 
-    def is_a_follower (self, user):
+    def is_a_follower(self, user):
         from User import User
         if not isinstance(user, User):
             raise Exception("Must send user of type User")
         return user in self.subscribers
-    
+
     def followers_amount(self):
         return len(self.subscribers)

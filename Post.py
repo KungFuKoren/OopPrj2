@@ -1,6 +1,7 @@
 from abc import ABC
 from typing import List, Dict, Union
 
+
 class Post(ABC):
     def __init__(self, user, post_type, content):
         from PostObserver import PostObserver
@@ -11,8 +12,6 @@ class Post(ABC):
         self.likes = set()
         self.comments: List[Dict[Union[User, str], str]] = []
         self.post_observer = PostObserver(self)
-        
-
 
     def getUser(self):
         return self.user
@@ -36,8 +35,5 @@ class Post(ABC):
         if isinstance(user, User) and user.getName() not in self.likes and user.logged:
             self.likes.add(user)
             self.post_observer.liked(user)
-
-
-            # print("Liked")
         else:
             raise Exception("Unable to like")

@@ -72,7 +72,7 @@ def main():
     print(p3)
 
     # # Displaying the image of the post
-    # p2.display()
+    p2.display()
     print("\n")
 
     # p2.comment(u5, "Amazing picture!")
@@ -112,7 +112,6 @@ def main():
     print(u4.notif_list)
     print("u5 notif list:")
     print(u5.notif_list)
-    
 
 
 if __name__ == '__main__':
