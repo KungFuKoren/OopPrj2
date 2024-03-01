@@ -45,7 +45,7 @@ class User():
         elif user.userName not in self.friends_list:
             raise Exception("You do not follow this user")
         else:
-            print(f"{user.userName} unfollowed {self.userName}")
+            print(f"{self.userName} unfollowed {user.userName}")
             self.friends_list.remove(user.userName)
             user.followers_observer.unsubscribe(self)
 
@@ -67,6 +67,6 @@ class User():
         self.notif_list.append(notification)
 
     def print_notifications(self):
-        print(f"{self.userName} notifications:")
+        print(f"{self.userName}'s notifications:")
         for notification in self.notif_list:
             print(f"{notification}")
