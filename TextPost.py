@@ -7,4 +7,4 @@ class TextPost(Post):
 
     def __str__(self):
         new_line = '\n'
-        return (f"""{self.user.userName} published a post:\n\"{self.content}\"""")
+        return (f"""{self.user.userName} published a post:\n\"{self.content}\"\n""")

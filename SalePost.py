@@ -11,8 +11,8 @@ class SalePost(Post):
     def __str__(self):
         new_line = '\n'
         if self.available:
-            return f"{self.user.userName} posted a product for sale:{new_line}For sale! {self.content}, price: {self.price}, pickup from: {self.location}"
-        return f"{self.user.userName} posted a product for sale:{new_line}Sold! {self.content}, price: {self.price}, pickup from: {self.location}"
+            return f"{self.user.userName} posted a product for sale:{new_line}For sale! {self.content}, price: {self.price}, pickup from: {self.location}\n"
+        return f"{self.user.userName} posted a product for sale:{new_line}Sold! {self.content}, price: {self.price}, pickup from: {self.location}\n"
 
     def discount(self, discount, password):
         if self.user.passWord != password:

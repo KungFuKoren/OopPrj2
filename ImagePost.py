@@ -7,12 +7,11 @@ class ImagePost(Post):
         super().__init__(user, post_type, image)
 
     def __str__(self):
-        return f"{self.user.userName} posted a picture"
+        return f"{self.user.userName} posted a picture\n"
 
     def display(self):
-        # print(self.content)
-        # img = self.content
-        img = 'image1.jpg'
+        print("Shows picture")
+        img = self.content
         img_to_arr = plt.imread(img)
         plt.imshow(img_to_arr)
         plt.show()

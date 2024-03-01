@@ -27,7 +27,7 @@ class Post(ABC):
             "user": user,
             "text": text
         })
-        self.post_observer.commented(user)
+        self.post_observer.commented(user, text)
         # send notification
 
     def like(self, user):

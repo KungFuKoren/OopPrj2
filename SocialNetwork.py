@@ -26,9 +26,9 @@ class SocialNetwork():
             raise Exception("Cant create another network")
 
     def __str__(self):
-        ans = f"{self.name} social network:"
+        ans = f"{self.name} social network:\n"
         for user in self.userList:
-            ans += user.__str__()
+            ans += self.userList[user].__str__() + '\n'
         return ans
 
     def getName(self):
@@ -52,6 +52,8 @@ class SocialNetwork():
         if type(userName) == str and userName in self.userNames and not self.userList[userName].logged:
             if self.userList[userName].passWord == passWord:
                 self.userList[userName].logged = True
+                print(f"{userName} connected")
+
         else:
             raise Exception("Unable to log in")
 
@@ -60,3 +62,4 @@ class SocialNetwork():
             raise Exception("User already logged out or User do not exist")
 
         self.userList[userName].logged = False
+        print(f"{userName} disconnected")

@@ -18,7 +18,7 @@ class User():
         self.followers_observer = FollowersObserver(self)
 
     def __str__(self):
-        return f'User name: {self.getName()}, Number of posts: {self.howManyPosts()} Number of followers: {self.numOfFollowers()} '
+        return f'User name: {self.getName()}, Number of posts: {self.howManyPosts()}, Number of followers: {self.numOfFollowers()} '
 
     def howManyPosts(self):
         return len(self.post_list)
@@ -35,7 +35,7 @@ class User():
         elif user.userName in self.friends_list:
             raise Exception("Already follows")
         else:
-            print(f"{user.userName} started following {self.userName}")
+            print(f"{self.userName} started following {user.userName}")
             self.friends_list.append(user.userName)
             user.followers_observer.subscribe(self)
 
@@ -45,6 +45,7 @@ class User():
         elif user.userName not in self.friends_list:
             raise Exception("You do not follow this user")
         else:
+            print(f"{user.userName} unfollowed {self.userName}")
             self.friends_list.remove(user.userName)
             user.followers_observer.unsubscribe(self)
 

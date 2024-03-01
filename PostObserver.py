@@ -13,11 +13,15 @@ class PostObserver():
         if not isinstance(user, User):
             raise Exception("invalid input")
         if user != self.myself:
-            self.myself.add_notification(f"{user.getName()} liked your post")
+            notification = f"{user.getName()} liked your post"
+            self.myself.add_notification(notification)
+            print(f"notification to {self.myself.userName}: {notification}")
 
-    def commented(self, user):
+
+    def commented(self, user, text):
         if (isinstance(user, User)) and user != self.myself:
-            self.myself.add_notification(
-                f"{user.getName()} commented on your post")
+            notification = f"{user.getName()} commented on your post"
+            self.myself.add_notification(notification)
+            print(f"notification to {self.myself.userName}: {notification}: {text}")
         else:
             raise Exception("invalid input")
