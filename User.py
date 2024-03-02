@@ -18,7 +18,7 @@ class User():
         self.followers_observer = FollowersObserver(self)
 
     def __str__(self):
-        return f'User name: {self.getName()}, Number of posts: {self.howManyPosts()}, Number of followers: {self.numOfFollowers()} '
+        return f'User name: {self.getName()}, Number of posts: {self.howManyPosts()}, Number of followers: {self.numOfFollowers()}'
 
     def howManyPosts(self):
         return len(self.post_list)

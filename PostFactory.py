@@ -20,5 +20,4 @@ class PostFactory():
             return None
 
         print(post)
-        print()
         return post
