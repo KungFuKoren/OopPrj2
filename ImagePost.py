@@ -14,4 +14,4 @@ class ImagePost(Post):
         img = self.content
         img_to_arr = plt.imread(img)
         plt.imshow(img_to_arr)
-        # plt.show()
+        plt.show()
