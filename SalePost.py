@@ -17,7 +17,7 @@ class SalePost(Post):
     def discount(self, discount, password):
         if self.user.passWord != password:
             raise Exception("Wrong password")
-        self.price = self.price * (1 - (discount / 100))
+        self.price = self.price - (self.price * (discount / 100))
         print(
             f"Discount on {self.user.userName} product! the new price is: {self.price}")
 
